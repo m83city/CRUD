@@ -1,0 +1,76 @@
+version: "3"
+
+services:
+
+  postgresql:
+    container_name: postgresql
+    image: 'bitnami/postgresql:latest'
+    restart: always
+    environment:
+      POSTGRESQL_USERNAME: root
+      POSTGRESQL_PASSWORD: root
+      POSTGRESQL_DATABASE: postgresdb
+    ports:
+      - target: 5432
+        published: 5433
+        protocol: tcp
+        mode: host
+    networks:
+      - net
+    volumes:
+      - postgresql-persistence:/bitnami/postgresql
+
+  student:
+    container_name: student
+    build:
+      context: ./students
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/postgresdb
+    depends_on:
+      - postgresql
+    ports:
+      - target : 8080
+        published: 9090
+    networks:
+      - net
+
+  student-name:
+    container_name: name
+    image: 'bitnami'
+    build:
+      context: ./get-name
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/postgresdb
+    depends_on:
+      - postgresql
+      - student
+    ports:
+      - target: 8085
+        published: 9095
+    networks:
+      - net
+
+
+  student-last-name:
+    container_name: student-last-name
+    build:
+      context: ./get-last-name
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/postgresdb
+    depends_on:
+      - postgresql
+      - student
+    ports:
+      - target: 8075
+        published: 9075
+    networks:
+      - net
+
+volumes:
+  postgresql-persistence:
+
+networks:
+  net:
