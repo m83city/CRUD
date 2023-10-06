@@ -1,6 +1,5 @@
 package com.example.students.model;
 
-import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 @Builder

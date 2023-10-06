@@ -1,10 +1,5 @@
 package com.example.students.repository;
 
-
 import com.example.students.model.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface StudentRepository extends JpaRepository<StudentEntity, Integer> {
-//    @Query(value = "", nativeQuery = true)
-// Student findByName(String name);
-}
+public interface StudentRepository extends JpaRepository<StudentEntity, Integer> {}
