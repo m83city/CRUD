@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Table (name = "student")
-public class GetFieldNameEntity {
+public class NameEntity {
     @Id
     private Integer id;
 

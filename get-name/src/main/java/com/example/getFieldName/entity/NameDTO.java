@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GetFieldNameDTO {
+public class NameDTO {
     private String studentName;
 }
