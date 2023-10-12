@@ -1,10 +1,10 @@
-package com.example.getFieldName.entity;
+package com.example.getFieldName.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class NameDTO {
+public class StudentNameDTO {
     private String studentName;
 }
