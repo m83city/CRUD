@@ -5,5 +5,6 @@ import lombok.Data;
 @Builder
 @Data
 public class StudentLastName {
-
+    private Integer id;
+    private String lastName;
 }
