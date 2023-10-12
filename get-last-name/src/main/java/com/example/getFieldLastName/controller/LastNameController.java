@@ -1,5 +1,6 @@
 package com.example.getFieldLastName.controller;
 
+import com.example.getFieldLastName.dto.LastNameDTO;
 import com.example.getFieldLastName.entity.LastNameEntity;
 import com.example.getFieldLastName.service.LastNameService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class LastNameController {
     private final LastNameService nameService;
     @GetMapping("/student-last-name/{id}")
-    public Optional<LastNameEntity> getStudentNameById (@PathVariable Integer id) {
+    public LastNameDTO getStudentNameById (@PathVariable Integer id) {
         return nameService.getFieldLastNameById(id);
     }
 }
