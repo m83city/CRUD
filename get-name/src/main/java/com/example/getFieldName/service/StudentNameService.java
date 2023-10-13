@@ -15,8 +15,11 @@ public class StudentNameService {
         if(isNull(id)){
             throw new RuntimeException("Student Id is null");
         }
-        return studentRepository.findById(id).map(entity -> StudentNameDTO.builder()
+
+        return studentRepository.findById(id)
+                .map(entity -> StudentNameDTO.builder()
                 .studentName(entity.getStudentName())
-                .build()).orElse(null);
+                .build())
+                .orElse(null);
     }
 }
