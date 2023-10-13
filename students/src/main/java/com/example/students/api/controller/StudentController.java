@@ -1,7 +1,6 @@
-package com.example.students.controller;
+package com.example.students.api.controller;
 
-import com.example.students.model.StudentDTO;
-import com.example.students.model.StudentEntity;
+import com.example.students.api.dto.StudentDTO;
 import com.example.students.model.StudentFullName;
 import com.example.students.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +15,8 @@ import static java.util.Objects.isNull;
 public class StudentController {
     private final StudentService studentService;
 
-    @GetMapping("/student/{id}/name/full")
-    public StudentFullName getFullName (@PathVariable Integer id) {
-        if(isNull(id)){
-            throw new RuntimeException("Student Id is null");
-        }
-        return studentService.getStudentFullName(id);
-    }
     @GetMapping("/student")
-    public List<StudentEntity> getAll() {
+    public List<StudentDTO> getAll() {
         return studentService.getAllStudents();
     }
     @PostMapping("/student")

@@ -1,4 +1,4 @@
-package com.example.students.model;
+package com.example.students.api.dto;
 
 import lombok.*;
 

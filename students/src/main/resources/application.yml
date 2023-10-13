@@ -7,3 +7,5 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+path:
+  url: http://name:8085/name/%d

@@ -1,10 +1,12 @@
-package com.example.students.mapper;
+package com.example.students.api.mapper;
 
-import com.example.students.model.StudentDTO;
-import com.example.students.model.StudentEntity;
+import com.example.students.api.dto.StudentDTO;
+import com.example.students.repository.entity.StudentEntity;
+
+import java.util.List;
+
 public class StudentMapper {
-
-    public StudentEntity entityMapper(StudentDTO studentDTO){
+    public static StudentEntity asStudentEntity(StudentDTO studentDTO){
         return StudentEntity.builder()
                 .age(studentDTO.getAge())
                 .course(studentDTO.getCourse())
@@ -13,7 +15,7 @@ public class StudentMapper {
                 .secondName(studentDTO.getSecondName())
                 .build();
     }
-    public StudentDTO dtoMapper(StudentEntity studentEntity){
+    public static StudentDTO asDTOMapper(StudentEntity studentEntity){
        return StudentDTO.builder()
                 .age(studentEntity.getAge())
                 .course(studentEntity.getCourse())
@@ -23,5 +25,10 @@ public class StudentMapper {
                 .id(studentEntity.getId())
                 .build();
     }
+    public static List<StudentDTO> studentDTOListMapper(List<StudentEntity> studentEntityList) {
+        return studentEntityList
+                .stream()
+                .map(StudentMapper::asDTOMapper)
+                .toList();
+    }
 }
-

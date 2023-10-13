@@ -1,6 +1,6 @@
 package com.example.students.service;
 
-import com.example.students.model.StudentEntity;
+import com.example.students.repository.entity.StudentEntity;
 import com.example.students.repository.StudentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;

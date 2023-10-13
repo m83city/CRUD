@@ -15,5 +15,4 @@ public class StudentFullName {
 
     @Column(name = "lastName")
     private String lastName;
-
 }

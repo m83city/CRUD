@@ -1,4 +1,4 @@
-package com.example.students.model;
+package com.example.students.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,6 +27,4 @@ public class StudentEntity {
 
     @Column(name = "course")
     private Integer course;
-
-
 }
