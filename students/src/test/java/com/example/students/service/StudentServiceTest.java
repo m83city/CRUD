@@ -1,7 +1,7 @@
 package com.example.students.service;
 
 import com.example.students.repository.entity.StudentEntity;
-import com.example.students.repository.StudentRepository;
+import com.example.students.repository.jpa.StudentJPARepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -20,7 +20,7 @@ class StudentServiceTest {
     @InjectMocks
     private StudentService service;
     @Mock
-    private StudentRepository repository;
+    private StudentJPARepository repository;
 
 
     @Test

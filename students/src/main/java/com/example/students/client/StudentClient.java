@@ -1,4 +1,4 @@
-package com.example.students.repository;
+package com.example.students.client;
 
 import com.example.students.model.StudentLastName;
 import org.springframework.cloud.openfeign.FeignClient;
