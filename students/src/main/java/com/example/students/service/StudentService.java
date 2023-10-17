@@ -23,14 +23,14 @@ public class StudentService {
     public Student getStudentById(Integer id){
         return studentRepository.getStudentsById(id);
     }
+
     public Student updateStudent (Integer id, StudentDTO studentDTO){
         return studentRepository.updateStudent(id);
     }
+
     public Student createStudent(Student student){
-        //return ToDTO.entityAsDTO(studentJPARepository.save(ToEntity.DTOasEntity(student)));
         return studentRepository.createStudent(student);
     }
-
 
     public StudentFullName getStudentFullName (Integer id) {
         RestTemplate restTemplate = new RestTemplate();
@@ -49,14 +49,8 @@ public class StudentService {
         return fullName;
     }
 
-
-
-
-
     public Integer deleteStudentById (Integer id){
         studentJPARepository.deleteById(id);
         return  id;
     }
-
-
 }
