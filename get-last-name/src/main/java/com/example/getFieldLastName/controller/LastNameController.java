@@ -1,7 +1,7 @@
 package com.example.getFieldLastName.controller;
 
-import com.example.getFieldLastName.entity.GetFieldLastNameEntity;
-import com.example.getFieldLastName.service.GetFieldLastNameService;
+import com.example.getFieldLastName.entity.LastNameEntity;
+import com.example.getFieldLastName.service.LastNameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +14,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Controller
 
-public class GetFieldLastNameController {
-    private final GetFieldLastNameService nameService;
+public class LastNameController {
+    private final LastNameService nameService;
     @GetMapping("/student-last-name/{id}")
-    public Optional<GetFieldLastNameEntity> getStudentNameById (@PathVariable Integer id) {
-        Optional<GetFieldLastNameEntity> nameEntity = nameService.getFieldLastNameById(id);
-        return nameEntity;
+    public String getStudentNameById (@PathVariable Integer id) {
+        return nameService.getFieldLastNameById(id);
     }
 }

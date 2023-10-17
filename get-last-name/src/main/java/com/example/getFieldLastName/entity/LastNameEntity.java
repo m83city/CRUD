@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "student")
-public class GetFieldLastNameEntity {
+public class LastNameEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
