@@ -1,4 +1,4 @@
-package com.example.students.model;
+package com.example.students.domain;
 
 import jakarta.persistence.Column;
 
@@ -6,13 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class StudentFullName {
-    @Column(name = "firstname")//todo why do you have it here
+    //todo why do you have it here /done
     private String firstName;
 
-    @Column(name = "secondname")
     private String secondName;
 
-    @Column(name = "lastName")
     private String lastName;
 }

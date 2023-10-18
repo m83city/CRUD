@@ -4,8 +4,8 @@ import com.example.students.domain.Student;
 import com.example.students.repository.entity.StudentEntity;
 
 public class StudentRepoMapper {
-    public static StudentEntity asStudentEntity(Student student){
-        return    StudentEntity
+    public static StudentEntity asStudentEntity(Student student) {
+        return StudentEntity
                 .builder()
                 .age(student.getAge())
                 .course(student.getCourse())
@@ -15,7 +15,8 @@ public class StudentRepoMapper {
                 .id(student.getId())
                 .build();
     }
-    public static Student asStudent(StudentEntity studentEntity){
+
+    public static Student asStudent(StudentEntity studentEntity) {
         return Student
                 .builder()
                 .age(studentEntity.getAge())

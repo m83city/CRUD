@@ -1,57 +1,43 @@
 package com.example.students.service;
 
+import com.example.students.client.StudentClientImpl;
 import com.example.students.domain.Student;
-import com.example.students.client.StudentClient;
-import com.example.students.api.dto.StudentDTO;
-import com.example.students.repository.StudentRepository;
-import com.example.students.model.StudentFullName;
+import com.example.students.repository.StudentRepositoryImpl;
+import com.example.students.domain.StudentFullName;
 import com.example.students.repository.jpa.StudentJPARepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentJPARepository studentJPARepository;
-    private final StudentRepository studentRepository;
-    private final StudentClient client;
-    @Value("${path.url}")
-    private String url;
+    private final StudentRepositoryImpl studentRepositoryImpl;
+    private final StudentClientImpl client;
 
-    public Student getStudentById(Integer id){
-        return studentRepository.getStudentsById(id);
+    public Student getStudentById(Integer id) {
+        return studentRepositoryImpl.getStudentsById(id);
     }
 
-    public Student updateStudent (Integer id, StudentDTO studentDTO){//todo why do you need here DTO, and what do you update here
-        return studentRepository.updateStudent(id);
+    public Student updateStudent(Integer id, Student student) {//todo why do you need here DTO, and what do you update here /done
+        return studentRepositoryImpl.updateStudent(id, student);
     }
 
-    public Student createStudent(Student student){
-        return studentRepository.createStudent(student);
+    public Student createStudent(Student student) {
+        return studentRepositoryImpl.createStudent(student);
     }
 
-    public StudentFullName getStudentFullName (Integer id) {
-        RestTemplate restTemplate = new RestTemplate();
-        StudentFullName fullName = new StudentFullName();
-
-        //todo extract all this logic to different class lice StudentClient
-        String resourceURL = String.format(url, id);// service: first-name
-
-        final String firstName = restTemplate.getForObject(resourceURL, String.class);
-        fullName.setFirstName(firstName);
-
-        if(studentJPARepository.findById(id).isPresent()){
-            fullName.setSecondName(studentJPARepository.findById(id).get().getSecondName());
+    public StudentFullName getStudentFullName(Integer id) {
+        if (studentJPARepository.findById(id).isPresent()) {
+            return StudentFullName.builder().firstName(client.getStudentNameById(id)).secondName(studentJPARepository.findById(id).get().getSecondName()).lastName(client.getStudentLastNameById(id)).build();
+        } else {
+            throw new RuntimeException();
         }
-
-        fullName.setLastName(client.getStudentLastName(id).getLastName());//service: last-name
-        return fullName;
+        //todo extract all this logic to different class lice StudentClient /done move to ../client/StudentClientImpl.class
     }
 
-    public Integer deleteStudentById (Integer id){
+    public Integer deleteStudentById(Integer id) {
         studentJPARepository.deleteById(id);
-        return  id;
+        return id;
     }
 }

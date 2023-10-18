@@ -8,4 +8,5 @@ spring:
     hibernate:
       ddl-auto: update
 path:
-  url: http://name:8085/name/%d
+  urlNameService: http://name:8085/name/%d
+  urlLastNameService: http://student-last-name:8075
