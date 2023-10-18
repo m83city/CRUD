@@ -1,12 +1,14 @@
 package com.example.students.api.controller;
 
 import com.example.students.api.dto.StudentDTO;
-import com.example.students.api.mapper.StudentAPIMapper;
 import com.example.students.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.example.students.api.mapper.StudentAPIMapper.asStudent;
+import static com.example.students.api.mapper.StudentAPIMapper.asStudentDTO;
 import static java.util.Objects.isNull;
 
 @RestController
@@ -16,12 +18,12 @@ public class StudentController {
 
     @GetMapping("/student/{id}")
     public StudentDTO getAll(@PathVariable Integer id) {
-      return  StudentAPIMapper.asStudentDTO(studentService.getStudentById(id));
+      return  asStudentDTO(studentService.getStudentById(id));
     }
 
     @PutMapping("/student/{id}")
     public StudentDTO updateById (@PathVariable Integer id, @RequestBody StudentDTO studentDTO){
-        return StudentAPIMapper.asStudentDTO(studentService.updateStudent(id, studentDTO));
+        return asStudentDTO(studentService.updateStudent(id, studentDTO));
     }
 
     @PostMapping("/student")
@@ -30,13 +32,12 @@ public class StudentController {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .eTag("HELLO WOLRD") // write body
+                    //todo write correct response text
                     .build();
         }
         //StudentDTO response = studentService.createStudent(studentDTO);
-        StudentDTO responseMod = StudentAPIMapper
-                .asStudentDTO(studentService
-                        .createStudent(StudentAPIMapper
-                                .asStudent(studentDTO)));
+        //todo extract to different variables
+        StudentDTO responseMod = asStudentDTO(studentService.createStudent(asStudent(studentDTO)));
         return ResponseEntity.ok(responseMod);
     }
 

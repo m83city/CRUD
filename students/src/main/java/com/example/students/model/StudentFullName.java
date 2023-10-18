@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class StudentFullName {
-    @Column(name = "firstname")
+    @Column(name = "firstname")//todo why do you have it here
     private String firstName;
 
     @Column(name = "secondname")

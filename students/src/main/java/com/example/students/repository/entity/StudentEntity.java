@@ -11,7 +11,7 @@ import lombok.*;
 public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id;//todo all the ids should be Long
 
     @Column(name = "firstname")
     private String firstName;

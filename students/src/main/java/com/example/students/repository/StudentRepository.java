@@ -11,15 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Repository
 
-public class StudentRepository {
+public class StudentRepository {//todo call it like StudentRepositoryImpl
+
     private final StudentJPARepository studentRepository;
 
     public Student getStudentsById(Integer id){
-        return StudentRepoMapper.asStudent(studentRepository.getReferenceById(id));
+        return StudentRepoMapper.asStudent(studentRepository.getReferenceById(id)); //todo make it without StudentRepoMapper.class
     }
 
     public Student updateStudent (Integer id) {
-        return StudentRepoMapper.asStudent(studentRepository.save(studentRepository.getReferenceById(id)));
+        return StudentRepoMapper.asStudent(studentRepository.save(studentRepository.getReferenceById(id)));//todo extract it into different variables
     }
 
     public Student createStudent (Student student){

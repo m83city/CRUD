@@ -24,7 +24,7 @@ public class StudentService {
         return studentRepository.getStudentsById(id);
     }
 
-    public Student updateStudent (Integer id, StudentDTO studentDTO){
+    public Student updateStudent (Integer id, StudentDTO studentDTO){//todo why do you need here DTO, and what do you update here
         return studentRepository.updateStudent(id);
     }
 
@@ -36,6 +36,7 @@ public class StudentService {
         RestTemplate restTemplate = new RestTemplate();
         StudentFullName fullName = new StudentFullName();
 
+        //todo extract all this logic to different class lice StudentClient
         String resourceURL = String.format(url, id);// service: first-name
 
         final String firstName = restTemplate.getForObject(resourceURL, String.class);
